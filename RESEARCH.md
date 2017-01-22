@@ -2,6 +2,10 @@
 
 ## Options / Alternatives
 
+### Cloudmonix 
+
+Product that allows a more advanced scalation.. the free version seems to be quite complete (http://cloudmonix.com/)
+
 ### Azure Auto Scale
 *(Main source: [Auto scale a cloud service in Azure Portal](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-how-to-scale-portal))*
 
