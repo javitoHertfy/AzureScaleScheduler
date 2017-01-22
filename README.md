@@ -16,7 +16,11 @@ How it works
 
 Questions to resolve
 ---------------------------
-- Does a similar tool already exists
+- How much money are we going to save up? Calculate the average amount with the autoscale tool
+- Does a similar tool already exists?
+  Apparently there are a couple of alternatives:
+  1.- The new portal has a more advanced scaling scheduler, but still I think that is not the solution for 30 services.. we need to configure one by one each service and DB
+  2.- cloudmonix.com it has a free version
 - Decide if we can do it with serverless code or automation
 - Which language do we choose
 - Json structure
