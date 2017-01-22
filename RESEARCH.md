@@ -30,6 +30,9 @@ Here, we can configure the Scale scheduler with some **Profiles** and **Rules**.
 #### Cons
 * Only allows to modify the scale, not to *reboot* or *reimage* any instance
 * The metrics of the rules aren't enough to a full control
+### Azure Functions (serverless code)
+
+https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview
 
 ### Azure Scheduler
 
