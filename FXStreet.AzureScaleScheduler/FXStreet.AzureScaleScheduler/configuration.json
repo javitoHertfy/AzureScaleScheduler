@@ -1,0 +1,50 @@
+﻿{
+  "services":
+    [
+      {
+        "default": 2,
+        "name": "calendar-i3-webapi-fxs",
+        "scaled_down": 1,
+        "scaled_down_times": "L;M;X;J;V 19:00",
+        "scaled_up": 2,
+        "scaled_up_times": "L;M;X;J;V 5:30 | D 23:00",
+        "special_events": true,
+        "special_events_scale_up": 6,
+        "special_events_times": "01/02 12:30 | 01/03 12:30",
+        "type": "cs"
+      },
+
+      {
+        "default": "D3_V2",
+        "name": "loki",
+        "scaled_down": "A1",
+        "scaled_down_times": "L;M;X;J;V 18:00",
+        "special_events": false,
+        "scaled_up": "D3_V2",
+        "scaled_up_times": "L;M;X;J;V 4:00 | D 23:00",
+        "type": "vm"
+      },
+
+      {
+        "default": "S3",
+        "name": "CalendarPro",
+        "scaled_down": "S2",
+        "scaled_down_times": "L;M;X;J;V 18:00",
+        "special_events": false,
+        "scaled_up": "S3",
+        "scaled_up_times": "L;M;X;J;V 4:00 | D 23:00",
+        "type": "db"
+      },
+
+      {
+        "default": "S2",
+        "name": "FXStreet30-QA",
+        "scaled_down": "S1",
+        "scaled_down_times": "L;M;X;J;V 18:00",
+        "special_events": false,
+        "scaled_up": "S2",
+        "scaled_up_times": "L;M;X;J;V 4:00 | D 23:00",      
+        "type": "asp"
+      }
+    ]
+}
