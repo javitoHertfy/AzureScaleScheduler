@@ -1,0 +1,9 @@
+﻿{
+  "id": "0",
+  "functionTimeout": "00:05:00",
+  "watchDirectories": [ ],
+  "tracing": {
+    "consoleLevel": "verbose",
+    "fileLoggingMode": "always"
+  }
+}
