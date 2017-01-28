@@ -35,8 +35,8 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="host.json" />
-    <None Include="myfxscsharpfunction\function.json" />
-    <None Include="myfxscsharpfunction\run.csx" />
+    <None Include="function.json" />
+    <None Include="run.csx" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
