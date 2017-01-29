@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 using RestSharp;
 
 public static void Run(TimerInfo myTimer, TraceWriter log)
@@ -21,15 +22,23 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
     //     }
     // }
 
-    var client = new RestClient("https://api.newrelic.com/v2/applications/5933547/instances.json");
-    var request = new RestRequest(Method.GET);
-    request.AddHeader("X-Api-Key", "d04a238f058c142b3d849d3f4c3001da");
-    var response = client.Execute(request);
+    var instances = NewRelicService.GetInstances();
 
-    log.Info(response.Content);
+    log.Info(JsonConvert.SerializeObject(instances));
 }
 
-/*
+public class NewRelicService {
+    public static IEnumerable<NewRelicInstance> GetInstances() {
+        var client = new RestClient("https://api.newrelic.com/v2/applications/5933547/instances.json");
+        var request = new RestRequest(Method.GET);
+        request.AddHeader("X-Api-Key", "d04a238f058c142b3d849d3f4c3001da");
+        var response = client.Execute(request);
+
+        var result = JsonConvert.DeserializeObject<IEnumerable<NewRelicInstance>>(response.Content);
+        return result;
+    }
+}
+
 public class NewRelicInstance {
     [JsonProperty("id")]
     public int Id { get; set; }
@@ -59,6 +68,7 @@ public class ApplicationSummary {
 }
 
 
+/*
 5933547
 d04a238f058c142b3d849d3f4c3001da
 https://api.newrelic.com/v2/applications/5933547/instances.json
