@@ -22,13 +22,11 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
     //     }
     // }
 
-    var instances = NewRelicService.GetInstances(log);
-
-    log.Info(JsonConvert.SerializeObject(instances));
+    var instances = NewRelicService.GetInstances();
 }
 
 public class NewRelicService {
-    public static IEnumerable<NewRelicInstance> GetInstances(TraceWriter log) {
+    public static IEnumerable<NewRelicInstance> GetInstances() {
         var client = new RestClient("https://api.newrelic.com/v2/applications/5933547/instances.json");
         var request = new RestRequest(Method.GET);
         request.AddHeader("X-Api-Key", "d04a238f058c142b3d849d3f4c3001da");
@@ -52,10 +50,10 @@ public class NewRelicInstance {
     public string Host { get; set; }
 
     [JsonProperty("application_summary")]
-    public ApplicationSummary ApplicationSummary { get; set; }
+    public NewRelicApplicationSummary ApplicationSummary { get; set; }
 }
 
-public class ApplicationSummary {
+public class NewRelicApplicationSummary {
     [JsonProperty("response_time")]
     public int ResponseTime { get; set; }
 
@@ -71,11 +69,3 @@ public class ApplicationSummary {
     [JsonProperty("instance_count")]
     public float InstanceCount { get; set; }
 }
-
-
-/*
-5933547
-d04a238f058c142b3d849d3f4c3001da
-https://api.newrelic.com/v2/applications/5933547/instances.json
-
-*/

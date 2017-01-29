@@ -94,6 +94,8 @@ Note that some scheduling requirements are too complicated to express with a sin
 
 https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview
 
+https://www.packtpub.com/books/content/autoscaling-windows-azure-service-management-rest-api
+
 ### Azure Scheduler
 
 ### Azure WebJob
