@@ -34,11 +34,14 @@ public class NewRelicService {
         request.AddHeader("X-Api-Key", "d04a238f058c142b3d849d3f4c3001da");
         var response = client.Execute(request);
 
-        log.Info(response.Content);
-
-        var result = JsonConvert.DeserializeObject<IEnumerable<NewRelicInstance>>(response.Content);
-        return result;
+        var result = JsonConvert.DeserializeObject<NewRelicResponse>(response.Content);
+        return result.ApplicationInstances;
     }
+}
+
+public class NewRelicResponse {
+    [JsonProperty("application_instances")]
+    public IEnumerable<NewRelicInstance> ApplicationInstances;
 }
 
 public class NewRelicInstance {
