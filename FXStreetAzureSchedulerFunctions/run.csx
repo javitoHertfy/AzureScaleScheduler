@@ -7,46 +7,25 @@ using RestSharp;
 
 public static void Run(TimerInfo myTimer, TraceWriter log)
 {
-    // string path = "configuration.js";
-    // log.Info($"aa FXSTimer trigger function executed at: {DateTime.Now}");
+    var client = new RestClient("https://staticconent.blob.core.windows.net/test/configuration.json");
+    var request = new RestRequest(Method.GET);
+    var response = client.Execute(request);
 
-    // // Open the stream and read it back.
-    // using (FileStream fs = File.Open(path, FileMode.Open))
-    // {
-    //     byte[] b = new byte[1024];
-    //     UTF8Encoding temp = new UTF8Encoding(true);
+    var result = JsonConvert.DeserializeObject<ServiceConfigurationResponse>(response.Content);
 
-    //     while (fs.Read(b, 0, b.Length) > 0)
-    //     {
-    //         log.Info(temp.GetString(b));
-    //     }
-    // }
+    log.Info($"appliction {application.Id}");
 
-    var instances = NewRelicService.GetInstances(log);
-}
+    foreach (var serviceConfiguration in result)
+    {
+        log.Info($"Name : {Name}");
 
-public class NewRelicService {
-    public static IEnumerable<NewRelicInstance> GetInstances(TraceWriter log) {
-        var client = new RestClient("https://staticconent.blob.core.windows.net/test/configuration.json");
-        var request = new RestRequest(Method.GET);      
-        var response = client.Execute(request);
-
-        var result = JsonConvert.DeserializeObject<ServiceConfigurationResponse>(response.Content);
-
-        log.Info($"appliction {application.Id}");
-
-        foreach (var serviceConfiguration in result)
-        {
-            log.Info($"Name : {Name}");
-
-        }    
     }
 }
 
 public class ServiceConfigurationResponse
 {
     [JsonProperty("services")]
-    public IEnumerable<ServiceConfiguration> ServicesConfiguration { get; set; };
+    public IEnumerable<ServiceConfiguration> ServicesConfiguration { get; set; }
 }
 
 public class ServiceConfiguration
