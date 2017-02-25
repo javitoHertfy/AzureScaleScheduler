@@ -11,13 +11,15 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
     var request = new RestRequest(Method.GET);
     var response = client.Execute(request);
 
-    var result = JsonConvert.DeserializeObject<ServiceConfigurationResponse>(response.Content);    
+    var result = JsonConvert.DeserializeObject<ServiceConfigurationResponse>(response.Content);
 
-    foreach (var serviceConfiguration in result)
-    {
-        log.Info($"Name : {serviceConfiguration.Name}");
+    log.Info($"Name : {result}");
 
-    }
+    //foreach (var serviceConfiguration in result)
+    //{
+    //    log.Info($"Name : {serviceConfiguration.Name}");
+
+    //}
 }
 
 public class ServiceConfigurationResponse
