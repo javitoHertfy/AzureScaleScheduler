@@ -46,7 +46,7 @@ public class NewRelicService {
 public class ServiceConfigurationResponse
 {
     [JsonProperty("services")]
-    public IEnumerable<ServiceConfiguration> ServicesConfiguration;
+    public IEnumerable<ServiceConfiguration> ServicesConfiguration { get; set; };
 }
 
 public class ServiceConfiguration
