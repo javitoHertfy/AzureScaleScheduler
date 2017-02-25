@@ -27,51 +27,60 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
 
 public class NewRelicService {
     public static IEnumerable<NewRelicInstance> GetInstances(TraceWriter log) {
-        var client = new RestClient("https://api.newrelic.com/v2/applications/5933547/instances.json");
-        var request = new RestRequest(Method.GET);
-        request.AddHeader("X-Api-Key", "d04a238f058c142b3d849d3f4c3001da");
+        var client = new RestClient("https://staticconent.blob.core.windows.net/test/configuration.json");
+        var request = new RestRequest(Method.GET);      
         var response = client.Execute(request);
 
-        var result = JsonConvert.DeserializeObject<NewRelicResponse>(response.Content);
+        var result = JsonConvert.DeserializeObject<ServiceConfigurationResponse>(response.Content);
 
-        foreach (var application in result.ApplicationInstances)
+        log.Info($"appliction {application.Id}");
+
+        foreach (var serviceConfiguration in result)
         {
-            log.Info($"appliction {application.Id}");
+            log.Info($"Name : {Name}");
 
-        }
-        return result.ApplicationInstances;
+        }    
     }
 }
 
-public class NewRelicResponse {
-    [JsonProperty("application_instances")]
-    public IEnumerable<NewRelicInstance> ApplicationInstances;
+public class ServiceConfigurationResponse
+{
+    [JsonProperty("services")]
+    public IEnumerable<ServiceConfiguration> ServicesConfiguration;
 }
 
-public class NewRelicInstance {
-    [JsonProperty("id")]
-    public int Id { get; set; }
+public class ServiceConfiguration
+{
+    [JsonProperty("default")]
+    public string DefaultConfiguration { get; set; }
 
-    [JsonProperty("host")]
-    public string Host { get; set; }
+    [JsonProperty("name")]
+    public string Name { get; set; }
 
-    [JsonProperty("application_summary")]
-    public NewRelicApplicationSummary ApplicationSummary { get; set; }
+    [JsonProperty("scaled_down")]
+    public string ScaledDown { get; set; }
+
+    [JsonProperty("scaled_down_times")]
+    public string ScaledDownTimes { get; set; }
+
+    [JsonProperty("scaled_up")]
+    public string ScaledUp { get; set; }
+
+    [JsonProperty("scaled_up_times")]
+    public string ScaledUpTimes { get; set; }
+
+    [JsonProperty("special_events")]
+    public string SpecialEvents { get; set; }
+
+    [JsonProperty("special_events_scale_up")]
+    public string SpecialEventsScaleUp { get; set; }
+
+    [JsonProperty("special_events_times")]
+    public string SpecialEventsTimes { get; set; }
+
+    [JsonProperty("type")]
+    public string Type { get; set; }
+
 }
 
-public class NewRelicApplicationSummary {
-    [JsonProperty("response_time")]
-    public int ResponseTime { get; set; }
 
-    [JsonProperty("throughput")]
-    public float Throughput { get; set; }
-
-    [JsonProperty("error_rate")]
-    public float ErrorRate { get; set; }
-
-    [JsonProperty("apdex_score")]
-    public float ApdexScore { get; set; }
-
-    [JsonProperty("instance_count")]
-    public float InstanceCount { get; set; }
-}
