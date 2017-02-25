@@ -22,11 +22,11 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
     //     }
     // }
 
-    var instances = NewRelicService.GetInstances();
+    var instances = NewRelicService.GetInstances(log);
 }
 
 public class NewRelicService {
-    public static IEnumerable<NewRelicInstance> GetInstances() {
+    public static IEnumerable<NewRelicInstance> GetInstances(TraceWriter log) {
         var client = new RestClient("https://api.newrelic.com/v2/applications/5933547/instances.json");
         var request = new RestRequest(Method.GET);
         request.AddHeader("X-Api-Key", "d04a238f058c142b3d849d3f4c3001da");
