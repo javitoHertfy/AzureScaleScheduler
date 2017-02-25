@@ -13,7 +13,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
 
     var result = JsonConvert.DeserializeObject<ServiceConfigurationResponse>(response.Content);
 
-    log.Info($"Name : {result}");
+    log.Info($"Name : {response.Content}");
 
     //foreach (var serviceConfiguration in result)
     //{
