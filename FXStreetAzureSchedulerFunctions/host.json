@@ -1,7 +1,5 @@
-﻿{
-  "id": "0",
-  "functionTimeout": "00:05:00",
-  "watchDirectories": [ ],
+{
+  "id": "93d03c1a2db94ee8b828beb18f90e7d1",
   "tracing": {
     "consoleLevel": "verbose",
     "fileLoggingMode": "always"

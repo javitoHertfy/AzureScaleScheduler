@@ -5,8 +5,13 @@ using System.Text;
 using Newtonsoft.Json;
 using RestSharp;
 
-public static void Run(TimerInfo myTimer, TraceWriter log)
+public static void Run(string input, TraceWriter log)
 {
+    JobHostConfiguration config = new JobHostConfiguration();
+    config.UseServiceBus();
+    JobHost host = new JobHost(config);
+    host.RunAndBlock();
+
     var client = new RestClient("https://staticconent.blob.core.windows.net/test/configuration.json");
     var request = new RestRequest(Method.GET);
     var response = client.Execute(request);
