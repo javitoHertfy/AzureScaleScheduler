@@ -33,6 +33,12 @@ public class NewRelicService {
         var response = client.Execute(request);
 
         var result = JsonConvert.DeserializeObject<NewRelicResponse>(response.Content);
+
+        foreach (var application in result.ApplicationInstances)
+        {
+            log.Info($"appliction {application.Id}");
+
+        }
         return result.ApplicationInstances;
     }
 }
